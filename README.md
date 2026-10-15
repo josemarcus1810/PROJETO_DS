@@ -1,82 +1,67 @@
-# 📦 Sistema de Almoxarifado
+# Sistema de Almoxarifado
 
-## 📌 Sobre o projeto
+## 📌 Escopo do Projeto
 
-O Sistema de Almoxarifado é um projeto acadêmico desenvolvido durante o curso Técnico em Desenvolvimento de Sistemas do SENAI.
+### Problema
+A falta de organização e controle das informações de um almoxarifado pode dificultar o acompanhamento dos produtos, das quantidades disponíveis, dos lotes e dos pedidos de compra. Além disso, a ausência de um histórico organizado dificulta a consulta das movimentações realizadas.
 
-O objetivo do projeto é desenvolver um sistema para auxiliar no gerenciamento de um almoxarifado, organizando informações sobre produtos, lotes, pedidos de compra e movimentações de estoque.
+### Objetivo
+Desenvolver um sistema para facilitar o gerenciamento de um almoxarifado, permitindo organizar os produtos, controlar os lotes, acompanhar pedidos de compra e registrar as movimentações realizadas.
 
-A proposta é centralizar essas informações em um único sistema, facilitando o controle e a consulta dos dados.
+### Público-alvo
+O sistema será destinado aos responsáveis pelo gerenciamento e controle do almoxarifado, que necessitam cadastrar produtos, acompanhar solicitações de compra e consultar informações do estoque.
 
-## 🎯 Objetivo
+### Solução
+O sistema contará com uma interface simples e organizada, permitindo que o responsável pelo almoxarifado acesse as principais funcionalidades em um único ambiente.
 
-Desenvolver uma aplicação simples e organizada para auxiliar no controle de produtos e nas principais atividades de um almoxarifado.
+A aplicação terá páginas específicas para o gerenciamento de produtos, lotes, pedidos de compra e movimentações. O backend será desenvolvido em Python, com integração a um banco de dados MySQL para armazenar as informações do sistema.
 
-## ⚙️ Funcionalidades planejadas
+### Principais funcionalidades
+- **Login:** acesso ao sistema por meio de autenticação.
+- **Menu inicial:** navegação entre as funcionalidades.
+- **Cadastro de produtos:** registro de novos produtos com informações como nome, tipo, validade e quantidade.
+- **Gerenciamento de produtos:** consulta e edição da situação dos produtos, permitindo deixá-los ativos ou inativos.
+- **Gerenciamento de lotes:** cadastro de novos lotes vinculados a produtos já registrados.
+- **Pedidos de compra:** registro e acompanhamento de solicitações com os status pendente, aprovado ou rejeitado.
+- **Histórico de movimentações:** registro das operações realizadas, incluindo o produto, o tipo de movimentação, a data e o usuário responsável.
+- **Informações do usuário:** exibição de informações básicas do usuário do sistema.
 
-- **Login:** tela de acesso ao sistema.
-- **Menu inicial:** acesso às principais áreas da aplicação.
-- **Produtos:** cadastro, consulta e edição da situação dos produtos, permitindo deixá-los ativos ou inativos.
-- **Lotes:** cadastro e gerenciamento de lotes vinculados aos produtos.
-- **Pedidos de compra:** registro e acompanhamento de pedidos com os status pendente, aprovado ou rejeitado.
-- **Movimentações:** histórico das operações realizadas no sistema, com informações sobre o produto, o tipo de movimentação, a data e o usuário responsável.
-- **Usuário:** página com informações básicas do usuário.
+*Observação: as funcionalidades estão em desenvolvimento e podem sofrer alterações durante a implementação.*
+
+## 🎨 Design System
+
+### Cores
+- **Cor primária:** `#0A9E7E` — verde para destacar ações e elementos importantes.
+- **Cor secundária:** `#101010` — preto acinzentado para elementos secundários.
+- **Cor de fundo:** `#080808` — fundo escuro.
+- **Cor de texto:** `#FFFFFF` — branco para facilitar a leitura sobre o fundo escuro.
+
+### 🔤 Tipografia
+- **Fonte principal:** Poppins.
+- **Títulos:** Poppins, com destaque em negrito.
+- **Subtítulos:** Poppins, com peso intermediário.
+- **Texto:** Poppins, com foco em legibilidade e organização.
+
+### 🔷 Logotipo
+O logotipo representa a identidade visual do Sistema de Almoxarifado, com uma proposta simples e moderna, relacionada à organização e ao controle de materiais.
+
+A identidade visual utiliza uma combinação de tons escuros, branco e verde, mantendo um padrão entre as páginas e destacando os principais elementos da interface.
 
 ## 🛠️ Tecnologias
+- **HTML5:** estrutura das páginas do sistema.
+- **CSS3:** estilização e organização visual das interfaces.
+- **Python:** desenvolvimento do backend e das regras de negócio.
+- **MySQL:** armazenamento e gerenciamento dos dados.
+- **MySQL Workbench:** modelagem e administração do banco de dados.
+- **XAMPP:** ambiente local utilizado durante a preparação inicial do projeto.
+- **Git:** controle de versão do código.
+- **GitHub:** hospedagem do repositório e acompanhamento do desenvolvimento.
 
-- **HTML5:** estrutura das páginas.
-- **CSS3:** estilização e identidade visual.
-- **Python:** desenvolvimento do backend e das regras de funcionamento do sistema.
-- **MySQL:** gerenciamento e armazenamento dos dados.
-- **XAMPP:** ambiente local para desenvolvimento, conforme a configuração do projeto.
-- **MySQL Workbench:** ferramenta para administrar e modelar o banco de dados.
-- **Git e GitHub:** controle de versão e armazenamento do código-fonte.
-
-## 🎨 Interface
-
-O projeto possui uma identidade visual monocromática, com foco em simplicidade, organização e facilidade de uso.
-
-As telas estão sendo planejadas e desenvolvidas para manter um padrão visual entre as diferentes áreas do sistema.
-
-## 🗃️ Banco de dados
-
-O banco de dados será utilizado para armazenar as informações necessárias ao funcionamento da aplicação, como:
-
-- Usuários;
-- Produtos;
-- Lotes;
-- Pedidos de compra;
-- Histórico de movimentações.
-
-A estrutura do banco está em desenvolvimento e será integrada ao backend em Python.
-
-## 🚧 Desenvolvimento atual
-
-Até o momento, foram trabalhadas as seguintes etapas:
-
-- Levantamento e organização dos requisitos funcionais e não funcionais;
-- Planejamento das funcionalidades do sistema;
-- Modelagem inicial do banco de dados;
-- Definição da identidade visual;
-- Desenvolvimento das interfaces utilizando HTML e CSS;
-- Preparação do ambiente local de desenvolvimento;
-- Configuração inicial do repositório no GitHub.
-
-O backend será desenvolvido em Python, substituindo a proposta inicial de utilização do PHP.
-
-## 📍 Próximas etapas
-
-- Organizar e finalizar as páginas HTML e CSS;
-- Definir a estrutura definitiva do banco de dados MySQL;
-- Desenvolver o backend em Python;
-- Conectar a aplicação ao banco de dados;
-- Implementar as funcionalidades planejadas;
-- Testar o funcionamento do sistema e corrigir possíveis erros.
-
-## 👨‍💻 Finalidade
-
-Projeto acadêmico desenvolvido para aplicar, na prática, os conhecimentos adquiridos durante o curso Técnico em Desenvolvimento de Sistemas do SENAI.
+## 👥 Equipe
+- José Marcus Reis de Vasconcelos Paiva
 
 ---
 
-**Status:** Em desenvolvimento.
+**Status do projeto:** Em desenvolvimento.
+
+Projeto acadêmico desenvolvido durante o curso Técnico em Desenvolvimento de Sistemas do SENAI.
