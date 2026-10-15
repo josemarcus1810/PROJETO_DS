@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Lote - Almoxarifado</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Almoxarifado</h1>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="lotes.html">Lotes</a></li>
+                <li><a href="pedidos.html">Pedidos de compra</a></li>
+                <li><a href="movimentacoes.html">Movimentações</a></li>
+                <li><a href="usuario.html">Usuário</a></li>
+                <li><a href="login.html">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Cadastrar novo lote</h2>
+        
+        <form>
+            <label for="produto">Produto:</label>
+            <select name="produto" id="produto" required>
+                <option value="">Selecione um produto</option>
+                <option value="PAP_01">Papel A4</option>
+                <option value="LIM_01">Detergente</option>
+                <option value="INF_01">Teclado</option>
+            </select>
+
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" name="quantidade" id="quantidade" min="1" required>
+            
+            <label for="validade">Validade:</label>
+            <input type="date" name="validade" id="validade">
+
+            <button type="submit">Cadastrar novo lote</button>
+
+            <a href="lotes.html">Cancelar</a>
+        </form>
+    </main>
+    
+    <footer>
+        <h1>Sistema de Almoxarifado</h1>
+    </footer>
+
+</body>
+</html>

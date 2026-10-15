@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Almoxarifado</title>
+</head>
+<body>
+    <header>
+        <h1>Sistema de Almoxarifado</h1>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="lotes.html">Lotes</a></li>
+                <li><a href="pedidos.html">Pedidos de compra</a></li>
+                <li><a href="movimentacoes.html">Movimentações</a></li>
+                <li><a href="usuario.html">Usuário</a></li>
+                <li><a href="login.html">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Produtos</h2>
+
+        <section>
+            <h3>Cadastrar produto</h3>
+
+            <form>
+                <label for="nome">Nome do produto:</label>
+                <input type="text" name="nome" id="nome" required>
+
+                <label for="tipo">Tipo do produto:</label>
+                <select name="tipo" id="tipo" required>
+                    <option value="">Selecione um tipo:</option>
+                    <option value="papelaria">Papelaria</option>
+                    <option value="limpeza">Limpeza</option>
+                    <option value="informatica">Informática</option>
+                    <option value="outros">Outros</option>
+                </select>
+
+                <label for="validade">Data de validade:</label>
+                <input type="date" name="validade" id="validade">
+
+                <label for="quantidade">Quantidade:</label>
+                <input type="number" name="quantidade" id="quantidade" min="1" required>
+
+                <button type="submit">Cadastrar produto</button>
+            </form>
+        </section>
+
+        <section>
+            <h3>Produtos cadastrados</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Validade</th>
+                        <th>Quantidade</th>
+                        <th>Situação</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PAP_01</td>
+                        <td>Papel A4</td>
+                        <td>Papelaria</td>
+                        <td>15/12/2027</td>
+                        <td>100</td>
+                        <td>Ativo</td>
+                        <td>
+                            <a href="editar_produto.html">Editar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Sistema de Almoxarifado</p>
+
+    </footer>
+    
+</body>
+</html>
