@@ -1,66 +1,101 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Lote - Almoxarifado</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Sistema de Almoxarifado</h1>
+    <div class="layout">
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="lotes.html">Lotes</a></li>
-                <li><a href="pedidos.html">Pedidos de compra</a></li>
-                <li><a href="movimentacoes.html">Movimentações</a></li>
-                <li><a href="usuario.html">Usuário</a></li>
-                <li><a href="login.html">Sair</a></li>
-            </ul>
-        </nav>
-    </header>
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
 
-    <main>
-        <h2>Editar lote</h2>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="lotes.html" class="ativo">Lotes</a></li>
+                    <li><a href="pedidos.html">Pedidos de compra</a></li>
+                    <li><a href="movimentacoes.html">Movimentações</a></li>
+                    <li><a href="usuario.html">Usuário</a></li>
+                </ul>
+            </nav>
 
-        <form>
-            <label for="numero">Número do lote:</label>
-            <input type="text" id="numero" name="numero"
-                   value="LOTE_01" readonly>
+            <a href="login.html" class="sair">Sair</a>
+        </aside>
 
-            <label for="produto">Produto:</label>
-            <input type="text" id="produto" name="produto"
-                   value="Papel A4" readonly>
+        <div class="conteudo">
 
-            <label for="quantidade">Quantidade:</label>
-            <input type="number" id="quantidade" name="quantidade"
-                   value="100" min="1" required>
+            <header class="topo">
+                <div>
+                    <h2>Editar lote</h2>
+                    <p>Consulte e atualize as informações do lote.</p>
+                </div>
+            </header>
 
-            <label for="validade">Data de validade:</label>
-            <input type="date" id="validade" name="validade"
-                   value="2027-12-15">
+            <main>
+                <section>
+                    <h3>Dados do lote</h3>
 
-            <label for="situacao">Situação:</label>
-            <select id="situacao" name="situacao" required>
-                <option value="ativo" selected>Ativo</option>
-                <option value="inativo">Inativo</option>
-            </select>
+                    <form>
+                        <label for="numero">Número do lote:</label>
+                        <input
+                            type="text"
+                            id="numero"
+                            name="numero"
+                            value="LOTE_01"
+                            readonly
+                        >
 
-            <button type="submit">Salvar alterações</button>
+                        <label for="produto">Produto:</label>
+                        <input
+                            type="text"
+                            id="produto"
+                            name="produto"
+                            value="Papel A4"
+                            readonly
+                        >
 
-            <a href="lotes.html">Cancelar</a>
-        </form>
-    </main>
+                        <label for="quantidade">Quantidade:</label>
+                        <input
+                            type="number"
+                            id="quantidade"
+                            name="quantidade"
+                            value="100"
+                            min="1"
+                            required
+                        >
 
-    <footer>
-        <p>Sistema de Almoxarifado</p>
-    </footer>
+                        <label for="validade">Data de validade:</label>
+                        <input
+                            type="date"
+                            id="validade"
+                            name="validade"
+                            value="2027-12-15"
+                        >
+
+                        <label for="situacao">Situação:</label>
+                        <select id="situacao" name="situacao" required>
+                            <option value="ativo" selected>Ativo</option>
+                            <option value="inativo">Inativo</option>
+                        </select>
+
+                        <button type="submit">Salvar alterações</button>
+
+                        <a href="lotes.html">Cancelar</a>
+                    </form>
+                </section>
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
 
 </body>
 </html>
-```

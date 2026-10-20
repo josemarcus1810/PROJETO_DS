@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Senha - Almoxarifado</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="lotes.html">Lotes</a></li>
+                    <li><a href="pedidos.html">Pedidos de compra</a></li>
+                    <li><a href="movimentacoes.html">Movimentações</a></li>
+                    <li><a href="usuario.html" class="ativo">Usuário</a></li>
+                </ul>
+            </nav>
+
+            <a href="login.html" class="sair">Sair</a>
+        </aside>
+
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>Alterar senha</h2>
+                    <p>Atualize sua senha para manter sua conta segura.</p>
+                </div>
+            </header>
+
+            <main>
+                <section>
+                    <h3>Dados de segurança</h3>
+
+                    <form>
+                        <label for="senha_atual">Senha atual:</label>
+                        <input
+                            type="password"
+                            id="senha_atual"
+                            name="senha_atual"
+                            placeholder="Digite sua senha atual"
+                            required
+                        >
+
+                        <label for="nova_senha">Nova senha:</label>
+                        <input
+                            type="password"
+                            id="nova_senha"
+                            name="nova_senha"
+                            placeholder="Digite sua nova senha"
+                            minlength="8"
+                            required
+                        >
+
+                        <label for="confirmar_senha">Confirmar nova senha:</label>
+                        <input
+                            type="password"
+                            id="confirmar_senha"
+                            name="confirmar_senha"
+                            placeholder="Digite novamente a nova senha"
+                            minlength="8"
+                            required
+                        >
+
+                        <p>
+                            A senha deve ter pelo menos 8 caracteres,
+                            incluindo ao menos um caractere especial.
+                        </p>
+
+                        <button type="submit">Salvar nova senha</button>
+
+                        <a href="usuario.html">Cancelar</a>
+                    </form>
+                </section>
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+</html>

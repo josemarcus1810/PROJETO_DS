@@ -3,43 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Almoxarifado</title>
-    <link hre="stylesheet" src="style.css">
+    <title>Início - Almoxarifado</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Sistema de Almoxarifado</h1>
-        
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="lotes.html">Lotes</a></li>
-                <li><a href="pedidos.html">Pedidos de compra</a></li>
-                <li><a href="movimentacoes.html">Movimentações</a></li>
-                <li><a href="usuario.html">Usuário</a></li>
-                <li><a href="login.html">Sair</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <h2>Bem vindo ao sistema de almoxarifado!</h2>
-        <p>Selecione uma opção para continuar.</p>
+    <div class="layout">
 
-        <section>
-            <h3>Resumo de Almoxarifado</h3>
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
 
-            <p>Total de produtos: 0</p>
-            <p>Total de lotes: 0 </p>
-            <p>Pedidos pendentes: 0</p>
-        </section>
-    </main>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="ativo">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="lotes.html">Lotes</a></li>
+                    <li><a href="pedidos.html">Pedidos de compra</a></li>
+                    <li><a href="movimentacoes.html">Movimentações</a></li>
+                    <li><a href="usuario.html">Usuário</a></li>
+                </ul>
+            </nav>
 
-    <footer>
-        <p>Sistema de almoxarifado</p>
-    </footer>
+            <a href="login.html" class="sair">Sair</a>
+        </aside>
 
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>Painel inicial</h2>
+                    <p>Bem-vindo ao sistema de almoxarifado!</p>
+                </div>
+            </header>
+
+            <main>
+                <section class="metricas">
+                    <article class="cartao">
+                        <h3>Produtos</h3>
+                        <p class="numero">24</p>
+                        <p>Total de produtos cadastrados</p>
+                    </article>
+
+                    <article class="cartao">
+                        <h3>Lotes</h3>
+                        <p class="numero">58</p>
+                        <p>Total de lotes cadastrados</p>
+                    </article>
+
+                    <article class="cartao">
+                        <h3>Pedidos de compra</h3>
+                        <p class="numero">12</p>
+                        <p>Pedidos registrados</p>
+                    </article>
+
+                    <article class="cartao">
+                        <h3>Movimentações</h3>
+                        <p class="numero">87</p>
+                        <p>Movimentações registradas</p>
+                    </article>
+                </section>
+
+                <section class="acoes">
+                    <h3>Ações rápidas</h3>
+
+                    <div class="botoes-rapidos">
+                        <a href="produtos.html">Cadastrar produto</a>
+                        <a href="pedidos.html">Realizar pedido</a>
+                        <a href="movimentacoes.html">Ver movimentações</a>
+                        <a href="novo_lote.html">Adicionar lote</a>
+                    </div>
+                </section>
+
+                <section class="historico">
+                    <h3>Últimas movimentações</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data e hora</th>
+                                <th>Produto</th>
+                                <th>Tipo</th>
+                                <th>Usuário</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>20/10/2026 08:30</td>
+                                <td>Papel A4</td>
+                                <td>Inclusão</td>
+                                <td>almoxarifado</td>
+                            </tr>
+
+                            <tr>
+                                <td>20/10/2026 09:15</td>
+                                <td>Detergente</td>
+                                <td>Novo lote</td>
+                                <td>almoxarifado</td>
+                            </tr>
+
+                            <tr>
+                                <td>20/10/2026 10:00</td>
+                                <td>Teclado</td>
+                                <td>Edição</td>
+                                <td>almoxarifado</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
 
 </body>
 </html>

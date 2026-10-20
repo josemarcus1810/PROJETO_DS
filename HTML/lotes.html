@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,61 +8,78 @@
 </head>
 <body>
 
-    <header>
-        <h1>Sistema de Almoxarifado</h1>
+    <div class="layout">
 
-        <nav>
-            <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="lotes.html">Lotes</a></li>
-                <li><a href="pedidos.html">Pedidos de compra</a></li>
-                <li><a href="movimentacoes.html">Movimentações</a></li>
-                <li><a href="usuario.html">Usuário</a></li>
-                <li><a href="login.html">Sair</a></li>
-            </ul>
-        </nav>
-    </header>
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
 
-    <main>
-        <h2>Lotes</h2>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="lotes.html" class="ativo">Lotes</a></li>
+                    <li><a href="pedidos.html">Pedidos de compra</a></li>
+                    <li><a href="movimentacoes.html">Movimentações</a></li>
+                    <li><a href="usuario.html">Usuário</a></li>
+                </ul>
+            </nav>
 
-        <section>
-            <h3>Lotes cadastrados</h3>
+            <a href="login.html" class="sair">Sair</a>
+        </aside>
 
-            <a href="novo_lote.html">Cadastrar novo lote</a>
+        <div class="conteudo">
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Número do lote</th>
-                        <th>Produto</th>
-                        <th>Quantidade</th>
-                        <th>Data</th>
-                        <th>Situação</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
+            <header class="topo">
+                <div>
+                    <h2>Lotes</h2>
+                    <p>Consulte e gerencie os lotes dos produtos.</p>
+                </div>
+            </header>
 
-                <tbody>
-                    <tr>
-                        <td>LOTE_01</td>
-                        <td>Papel A4</td>
-                        <td>100</td>
-                        <td>15/12/2027</td>
-                        <td>Ativo</td>
-                        <td>
-                            <a href="editar_lote.html">Editar</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
+            <main>
+                <section>
+                    <h3>Lotes cadastrados</h3>
 
-    <footer>
-        <p>Sistema de Almoxarifado</p>
-    </footer>
+                    <p>
+                        <a href="novo_lote.html" class="botao-principal">
+                            Cadastrar novo lote
+                        </a>
+                    </p>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Número do lote</th>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Data de validade</th>
+                                <th>Situação</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>LOTE_01</td>
+                                <td>Papel A4</td>
+                                <td>100</td>
+                                <td>15/12/2027</td>
+                                <td>Ativo</td>
+                                <td>
+                                    <a href="editar_lote.html">Editar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
 
 </body>
 </html>

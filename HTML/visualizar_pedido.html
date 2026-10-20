@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizar Pedido - Almoxarifado</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="produtos.html">Produtos</a></li>
+                    <li><a href="lotes.html">Lotes</a></li>
+                    <li><a href="pedidos.html" class="ativo">Pedidos de compra</a></li>
+                    <li><a href="movimentacoes.html">Movimentações</a></li>
+                    <li><a href="usuario.html">Usuário</a></li>
+                </ul>
+            </nav>
+
+            <a href="login.html" class="sair">Sair</a>
+        </aside>
+
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>Detalhes do pedido</h2>
+                    <p>Consulte as informações e a situação da solicitação.</p>
+                </div>
+            </header>
+
+            <main>
+                <section>
+                    <h3>Informações do pedido</h3>
+
+                    <p><strong>Número do pedido:</strong> PED_01</p>
+                    <p><strong>Produto:</strong> Papel A4</p>
+                    <p><strong>Produto novo?</strong> Não</p>
+                    <p><strong>Quantidade solicitada:</strong> 50</p>
+                    <p><strong>Setor solicitante:</strong> RH</p>
+                    <p><strong>Link do produto:</strong> 
+                        <a href="https://example.com" target="_blank" rel="noopener noreferrer">Consultar produto</a>
+                    </p>
+                    <p><strong>Situação:</strong> Pendente</p>
+
+                    <h3>Atualizar situação</h3>
+
+                    <form>
+                        <label for="situacao">Situação do pedido:</label>
+                        <select id="situacao" name="situacao" required>
+                            <option value="pendente" selected>Pendente</option>
+                            <option value="aprovado">Aprovado</option>
+                            <option value="rejeitado">Rejeitado</option>
+                        </select>
+
+                        <button type="submit">Salvar situação</button>
+                    </form>
+
+                    <p>
+                        <a href="pedidos.html">Voltar para os pedidos</a>
+                    </p>
+                </section>
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+</html>
