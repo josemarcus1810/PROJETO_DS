@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos de Compra - Almoxarifado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
+                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
+                    <li><a href="{{ url_for('lotes') }}">Lotes</a></li>
+                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
+                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
+                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
+                    <li><a href="{{ url_for('login') }}">Sair</a></li>
+                </ul>
+            </nav>
+
+            <a href="login.html" class="sair">Sair</a>
+        </aside>
+
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>Pedidos de compra</h2>
+                    <p>Cadastre e acompanhe as solicitações de compra.</p>
+                </div>
+            </header>
+
+            <main>
+
+                <section>
+                    <h3>Novo pedido</h3>
+
+                    <form>
+                        <label for="produto_novo">É um produto novo?</label>
+                        <select id="produto_novo" name="produto_novo" required>
+                            <option value="">Selecione uma opção</option>
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+
+                        <label for="produto">Nome do produto:</label>
+                        <input
+                            type="text"
+                            id="produto"
+                            name="produto"
+                            placeholder="Digite o nome do produto"
+                            required
+                        >
+
+                        <label for="quantidade">Quantidade solicitada:</label>
+                        <input
+                            type="number"
+                            id="quantidade"
+                            name="quantidade"
+                            min="1"
+                            required
+                        >
+
+                        <label for="setor">Setor solicitante:</label>
+                        <input
+                            type="text"
+                            id="setor"
+                            name="setor"
+                            placeholder="Digite o setor"
+                            required
+                        >
+
+                        <label for="link">Link do produto:</label>
+                        <input
+                            type="url"
+                            id="link"
+                            name="link"
+                            placeholder="https://..."
+                        >
+
+                        <button type="submit">Enviar pedido</button>
+                    </form>
+                </section>
+
+                <section>
+                    <h3>Pedidos cadastrados</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Número</th>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Setor</th>
+                                <th>Situação</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>PED_01</td>
+                                <td>Papel A4</td>
+                                <td>50</td>
+                                <td>RH</td>
+                                <td>Pendente</td>
+                                <td><a href="visualizar_pedido.html">Visualizar</a></td>
+                            </tr>
+
+                            <tr>
+                                <td>PED_02</td>
+                                <td>Teclado</td>
+                                <td>10</td>
+                                <td>TI</td>
+                                <td>Aprovado</td>
+                                <td><a href="visualizar_pedido.html">Visualizar</a></td>
+                            </tr>
+
+                            <tr>
+                                <td>PED_03</td>
+                                <td>Detergente</td>
+                                <td>20</td>
+                                <td>Limpeza</td>
+                                <td>Rejeitado</td>
+                                <td><a href="visualizar_pedido.html">Visualizar</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+</html>

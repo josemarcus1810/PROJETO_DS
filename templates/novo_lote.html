@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Lote - Almoxarifado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Sistema de Almoxarifado</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
+                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
+                    <li><a href="{{ url_for('lotes') }}" class="ativo">Lotes</a></li>
+                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
+                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
+                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
+                </ul>
+            </nav>
+
+            <a href="{{ url_for('login') }}" class="sair">Sair</a>
+        </aside>
+
+        <div class="conteudo">
+
+            <header>
+                <h1>Novo Lote</h1>
+            </header>
+
+            <main>
+                <div class="topo">
+                    <h2>Cadastrar novo lote</h2>
+                    <p>Selecione um produto já cadastrado e informe os dados do novo lote.</p>
+                </div>
+
+                <section>
+                    <form action="{{ url_for('novo_lote') }}" method="POST">
+
+                        <label for="produto_id">Produto cadastrado</label>
+
+                        <select name="produto_id" id="produto_id" required>
+                            <option value="">Selecione um produto</option>
+
+                            {% for produto in produtos %}
+                            <option value="{{ produto.id }}">
+                                {{ produto.codigo }} - {{ produto.nome }}
+                            </option>
+                            {% endfor %}
+                        </select>
+
+                        {% if not produtos %}
+                            <p>Nenhum produto cadastrado.</p>
+                        {% endif %}
+
+                        <label for="quantidade">Quantidade do novo lote</label>
+
+                        <input
+                            type="number"
+                            id="quantidade"
+                            name="quantidade"
+                            min="1"
+                            required
+                        >
+
+                        <label for="validade">Data de validade</label>
+
+                        <input
+                            type="date"
+                            id="validade"
+                            name="validade"
+                        >
+
+                        <button type="submit">Cadastrar lote</button>
+
+                        <a
+                            href="{{ url_for('lotes') }}"
+                            class="botao-principal"
+                            style="width: fit-content; align-self: flex-start;"
+                        >
+                            Cancelar
+                        </a>
+
+                    </form>
+                </section>
+            </main>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

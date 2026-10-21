@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuário - Almoxarifado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
+                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
+                    <li><a href="{{ url_for('lotes') }}">Lotes</a></li>
+                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
+                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
+                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
+                    <li><a href="{{ url_for('login') }}">Sair</a></li>
+                </ul>
+            </nav>
+
+            <a href="login.html" class="sair">Sair</a>
+        </aside>
+
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>Meu usuário</h2>
+                    <p>Consulte suas informações de acesso ao sistema.</p>
+                </div>
+            </header>
+
+            <main>
+
+                <section>
+                    <h3>Informações da conta</h3>
+
+                    <p><strong>Nome de usuário:</strong> admin</p>
+                    <p><strong>Último acesso:</strong> Não disponível</p>
+                </section>
+
+                <section>
+                    <h3>Segurança</h3>
+
+                    <p>Para manter sua conta segura, não compartilhe sua senha com outras pessoas.</p>
+
+                    <a href="alterar_senha.html" class="botao-principal">
+                        Alterar senha
+                    </a>
+                </section>
+
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+</html>

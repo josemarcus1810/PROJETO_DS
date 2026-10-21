@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimentações - Almoxarifado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
+                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
+                    <li><a href="{{ url_for('lotes') }}">Lotes</a></li>
+                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
+                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
+                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
+                    <li><a href="{{ url_for('login') }}">Sair</a></li>
+                </ul>
+            </nav>
+
+            <a href="login.html" class="sair">Sair</a>
+        </aside>
+
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>Histórico de movimentações</h2>
+                    <p>Consulte as alterações realizadas no almoxarifado.</p>
+                </div>
+            </header>
+
+            <main>
+
+                <section>
+                    <h3>Filtros de pesquisa</h3>
+
+                    <form>
+                        <label for="produto">Produto:</label>
+                        <input
+                            type="text"
+                            id="produto"
+                            name="produto"
+                            placeholder="Digite o nome ou código do produto"
+                        >
+
+                        <label for="tipo">Tipo de movimentação:</label>
+                        <select id="tipo" name="tipo">
+                            <option value="">Todas as movimentações</option>
+                            <option value="inclusao">Inclusão</option>
+                            <option value="edicao">Edição</option>
+                            <option value="inativacao">Inativação</option>
+                            <option value="novo_lote">Novo lote</option>
+                        </select>
+
+                        <button type="submit">Pesquisar</button>
+                    </form>
+                </section>
+
+                <section>
+                    <h3>Movimentações registradas</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Tipo de movimentação</th>
+                                <th>Data e hora</th>
+                                <th>Usuário responsável</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Papel A4</td>
+                                <td>Inclusão</td>
+                                <td>20/10/2026 08:30</td>
+                                <td>admin</td>
+                            </tr>
+
+                            <tr>
+                                <td>Detergente</td>
+                                <td>Novo lote</td>
+                                <td>19/10/2026 14:15</td>
+                                <td>admin</td>
+                            </tr>
+
+                            <tr>
+                                <td>Teclado</td>
+                                <td>Edição</td>
+                                <td>18/10/2026 10:45</td>
+                                <td>admin</td>
+                            </tr>
+
+                            <tr>
+                                <td>Papel A4</td>
+                                <td>Inativação</td>
+                                <td>17/10/2026 16:20</td>
+                                <td>admin</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+</html>

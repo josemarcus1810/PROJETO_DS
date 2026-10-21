@@ -1,0 +1,570 @@
+
+/* =========================
+   1. CONFIGURAÇÕES GERAIS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-primaria: #0F2E23;
+    --cor-botao: #1F6F4B;
+    --cor-destaque: #A7D7C1;
+    --cor-fundo-claro: #E9F5EE;
+    --cor-branco: #FFFFFF;
+    --cor-borda: #D9E2DC;
+    --cor-texto: #1E1E1E;
+    --cor-texto-secundario: #6B6B6B;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", "Roboto", Arial, sans-serif;
+    background-color: var(--cor-branco);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+/* =========================
+   2. ESTRUTURA PRINCIPAL
+========================= */
+
+.layout {
+    min-height: 100vh;
+}
+
+.conteudo {
+    margin-left: 250px;
+    min-height: 100vh;
+    min-width: 0;
+    background-color: var(--cor-branco);
+}
+
+/* =========================
+   3. BARRA LATERAL FIXA
+========================= */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 250px;
+    height: 100vh;
+    overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 28px 18px;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+}
+
+.sidebar h1 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 35px;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+}
+
+.sidebar nav a,
+.sidebar .sair {
+    display: block;
+    padding: 12px 14px;
+    border-radius: 6px;
+
+    color: var(--cor-branco);
+    text-decoration: none;
+    font-size: 14px;
+
+    transition: background-color 0.2s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.ativo,
+.sidebar .sair:hover {
+    background-color: var(--cor-botao);
+}
+
+.sidebar .sair {
+    margin-top: auto;
+}
+
+/* =========================
+   4. CABEÇALHO DAS PÁGINAS
+========================= */
+
+header {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    padding: 24px 30px;
+}
+
+header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 18px;
+}
+
+.conteudo .topo {
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-texto);
+    padding: 28px 35px;
+    border-bottom: 1px solid var(--cor-borda);
+}
+
+.conteudo .topo h2 {
+    margin-bottom: 5px;
+}
+
+.conteudo .topo p {
+    color: var(--cor-texto-secundario);
+}
+
+/* =========================
+   5. NAVEGAÇÃO GERAL
+========================= */
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+nav a {
+    display: block;
+    color: var(--cor-branco);
+    text-decoration: none;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+nav a:hover {
+    background-color: var(--cor-botao);
+}
+
+/* =========================
+   6. CONTEÚDO PRINCIPAL
+========================= */
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 250px;
+    margin: 35px auto;
+}
+
+.conteudo main {
+    width: auto;
+    max-width: none;
+    margin: 0;
+    padding: 30px 35px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* =========================
+   7. SEÇÕES E CARTÕES
+========================= */
+
+section {
+    background-color: var(--cor-fundo-claro);
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+}
+
+section p {
+    margin-bottom: 10px;
+}
+
+/* Cartões do painel inicial */
+
+.metricas {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 25px;
+}
+
+.metricas .cartao {
+    background-color: var(--cor-branco);
+    border: 1px solid var(--cor-borda);
+    border-left: 4px solid var(--cor-botao);
+    border-radius: 10px;
+    padding: 22px;
+    margin: 0;
+}
+
+.cartao h3 {
+    font-size: 15px;
+    color: var(--cor-texto-secundario);
+}
+
+.cartao .numero {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--cor-primaria);
+    margin: 8px 0;
+}
+
+.cartao p:last-child {
+    font-size: 13px;
+    color: var(--cor-texto-secundario);
+}
+
+/* Ações rápidas e histórico */
+
+.conteudo .acoes,
+.conteudo .historico {
+    background-color: var(--cor-branco);
+    border: 1px solid var(--cor-borda);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 25px;
+}
+
+.botoes-rapidos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.botoes-rapidos a {
+    display: inline-block;
+    background-color: var(--cor-botao);
+    color: var(--cor-branco);
+    text-decoration: none;
+    padding: 11px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.botoes-rapidos a:hover {
+    background-color: var(--cor-primaria);
+}
+
+/* =========================
+   8. FORMULÁRIOS
+========================= */
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+
+    background-color: var(--cor-branco);
+    color: var(--cor-texto);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--cor-destaque);
+    border-color: var(--cor-botao);
+}
+
+input[readonly] {
+    background-color: #F2F4F2;
+    color: var(--cor-texto-secundario);
+    cursor: default;
+}
+
+/* =========================
+   9. BOTÕES E LINKS
+========================= */
+
+button {
+    width: fit-content;
+    padding: 11px 18px;
+    margin-top: 10px;
+
+    border: none;
+    border-radius: 6px;
+    background-color: var(--cor-botao);
+    color: var(--cor-branco);
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--cor-primaria);
+}
+
+main a {
+    color: var(--cor-botao);
+}
+
+main a:hover {
+    color: var(--cor-primaria);
+}
+
+/* Botão de ação em formato de link */
+
+.botao-principal {
+    display: inline-block;
+    background-color: var(--cor-botao);
+    color: var(--cor-branco);
+    text-decoration: none;
+    padding: 11px 18px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.botao-principal:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+}
+
+/* =========================
+   10. TABELAS
+========================= */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--cor-branco);
+    margin-top: 12px;
+}
+
+th,
+td {
+    padding: 13px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda);
+    font-size: 14px;
+}
+
+th {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    font-weight: 600;
+}
+
+tbody tr:hover {
+    background-color: var(--cor-fundo-claro);
+}
+
+/* =========================
+   11. RODAPÉ
+========================= */
+
+footer {
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    text-align: center;
+    padding: 18px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+}
+
+.conteudo footer {
+    margin-top: 0;
+}
+
+/* =========================
+   12. TELAS MÉDIAS
+========================= */
+
+@media (max-width: 1000px) {
+    .metricas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .conteudo main {
+        padding: 25px;
+    }
+
+    .conteudo .topo {
+        padding: 25px;
+    }
+}
+
+/* =========================
+   13. TELAS PEQUENAS
+========================= */
+
+@media (max-width: 650px) {
+    .layout {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-width: 0;
+        overflow-y: visible;
+    }
+
+    .sidebar h1 {
+        margin-bottom: 18px;
+    }
+
+    .sidebar .sair {
+        margin-top: 15px;
+    }
+
+    .conteudo {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .conteudo .topo {
+        padding: 22px;
+    }
+
+    .conteudo main {
+        padding: 20px;
+    }
+
+    .metricas {
+        grid-template-columns: 1fr;
+    }
+
+    .conteudo section {
+        padding: 16px;
+    }
+
+    .conteudo table {
+        min-width: 600px;
+    }
+
+    .conteudo section:has(table) {
+        overflow-x: auto;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .botao-principal {
+        text-align: center;
+    }
+}
+
+/* =========================
+   14. TELA DE LOGIN
+========================= */
+
+.pagina-login {
+    min-height: 100vh;
+    background-color: var(--cor-fundo-claro);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 460px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-card {
+    background-color: var(--cor-branco);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 8px 24px rgba(15, 46, 35, 0.08);
+}
+
+.login-card h1 {
+    color: var(--cor-primaria);
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.login-descricao {
+    color: var(--cor-texto-secundario);
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-card form {
+    gap: 12px;
+}
+
+.login-card button {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.login-footer {
+    background: transparent;
+    color: var(--cor-texto-secundario);
+    text-align: center;
+    padding: 20px 0 0;
+    margin-top: 0;
+}
+
+@media (max-width: 480px) {
+    .login-card {
+        padding: 25px 20px;
+    }
+}

@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Almoxarifado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
+                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
+                    <li><a href="{{ url_for('lotes') }}">Lotes</a></li>
+                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
+                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
+                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
+                    <li><a href="{{ url_for('login') }}">Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>Produtos</h2>
+                    <p>Cadastre e consulte os produtos do almoxarifado.</p>
+                </div>
+            </header>
+
+            <main>
+
+                <section>
+                    <h3>Cadastrar produto</h3>
+
+                    <form action="{{ url_for('produtos') }}" method="POST">
+
+                        <label for="nome">Nome do produto:</label>
+                        <input type="text" name="nome" id="nome" required>
+
+                        <label for="tipo">Tipo do produto:</label>
+                        <select name="tipo" id="tipo" required>
+                            <option value="">Selecione um tipo</option>
+                            <option value="papelaria">Papelaria</option>
+                            <option value="limpeza">Limpeza</option>
+                            <option value="informatica">Informática</option>
+                            <option value="outros">Outros</option>
+                        </select>
+
+                        <label for="validade">Data de validade:</label>
+                        <input type="date" name="validade" id="validade">
+
+                        <label for="quantidade">Quantidade:</label>
+                        <input type="number" name="quantidade"
+                               id="quantidade" min="1" required>
+
+                        <button type="submit">Cadastrar produto</button>
+
+                    </form>
+                </section>
+
+                <section>
+                    <h3>Produtos cadastrados</h3>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>Tipo</th>
+                                <th>Validade</th>
+                                <th>Quantidade</th>
+                                <th>Situação</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for produto in produtos %}
+                            <tr>
+                                <td>{{ produto.codigo }}</td>
+                                <td>{{ produto.nome }}</td>
+                                <td>{{ produto.tipo }}</td>
+                                <td>
+                                    {% if produto.data_validade %}
+                                        {{ produto.data_validade.strftime('%d/%m/%Y') }}
+                                    {% else %}
+                                        Não se aplica
+                                    {% endif %}
+                                </td>
+                                <td>{{ produto.quantidade }}</td>
+                                <td>{{ produto.situacao }}</td>
+                                <td>
+                                    <a href="{{ url_for('editar_produto', id=produto.id) }}">Editar</a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="7">Nenhum produto cadastrado.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </section>
+
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+</html>

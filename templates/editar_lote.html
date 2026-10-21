@@ -1,0 +1,105 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Lote - Almoxarifado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
+
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
+                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
+                    <li><a href="{{ url_for('lotes') }}" class="ativo">Lotes</a></li>
+                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
+                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
+                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
+                    <li><a href="{{ url_for('login') }}">Sair</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>Editar lote</h2>
+                    <p>Consulte e atualize as informações do lote.</p>
+                </div>
+            </header>
+
+            <main>
+                <section>
+                    <h3>Dados do lote</h3>
+
+                    <form action="{{ url_for('editar_lote', id=lote.id) }}" method="POST">
+
+                        <label for="numero_lote">Número do lote:</label>
+                        <input
+                            type="text"
+                            id="numero_lote"
+                            value="{{ lote.numero_lote }}"
+                            readonly
+                        >
+
+                        <label for="produto">Produto:</label>
+                        <input
+                            type="text"
+                            id="produto"
+                            value="{{ lote.codigo_produto }} - {{ lote.nome_produto }}"
+                            readonly
+                        >
+
+                        <label for="quantidade">Quantidade:</label>
+                        <input
+                            type="number"
+                            id="quantidade"
+                            name="quantidade"
+                            value="{{ lote.quantidade }}"
+                            min="0"
+                            required
+                        >
+
+                        <label for="validade">Data de validade:</label>
+                        <input
+                            type="date"
+                            id="validade"
+                            name="validade"
+                            value="{{ lote.data_validade.strftime('%Y-%m-%d') if lote.data_validade else '' }}"
+                        >
+
+                        <label for="situacao">Situação:</label>
+                        <select id="situacao" name="situacao" required>
+                            <option value="ativo" {% if lote.situacao == 'ativo' %}selected{% endif %}>
+                                Ativo
+                            </option>
+                            <option value="inativo" {% if lote.situacao == 'inativo' %}selected{% endif %}>
+                                Inativo
+                            </option>
+                        </select>
+
+                        <button type="submit">Salvar alterações</button>
+
+                        <a href="{{ url_for('lotes') }}">Cancelar</a>
+
+                    </form>
+                </section>
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
+
+</body>
+</html>
