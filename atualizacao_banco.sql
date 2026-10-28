@@ -1,20 +1,27 @@
 -- =====================================================================
--- CRIAÇÃO COMPLETA DO BANCO "almoxarifado"  (NÃO DESTRUTIVA)
+-- BANCO PARA PUBLICAÇÃO (ONLINE) - Sistema de Almoxarifado  (NÃO DESTRUTIVO)
 --
--- Cria, se ainda não existirem: o banco e as tabelas produtos, lotes,
--- movimentacoes, usuarios e pedidos_compra (nessa ordem, por causa das
--- chaves estrangeiras). Não usa DROP, não apaga nada e pode ser
--- executado mais de uma vez.
+-- Sem DROP: não apaga nada e pode ser executado mais de uma vez.
 --
--- Como usar (MySQL Workbench): File > Open SQL Script > escolha este
--- arquivo > clique no PRIMEIRO raio (executa o script inteiro).
--- Depois rode:  SHOW TABLES;  (devem aparecer 5 tabelas)
+-- PARTE 1 - Tabelas
+--   Não usa CREATE DATABASE nem USE de propósito: ela roda no banco que
+--   estiver SELECIONADO. Hospedagens costumam criar o banco pelo painel
+--   (às vezes com nome como usuario$almoxarifado). Crie o banco pelo
+--   painel, selecione-o e execute esta parte. O mesmo vale para um banco
+--   de testes (ex.: almoxarifado_teste): selecione-o e execute a Parte 1.
+--
+-- PARTE 2 - Usuário próprio da aplicação (opcional)
+--   Só funciona se você tiver permissão de administrador no MySQL
+--   (servidor seu). Em hospedagens que criam usuários pelo painel
+--   (como o PythonAnywhere), pule esta parte e crie o usuário no painel.
+--
+-- Depois de executar, configure o sistema com as variáveis de ambiente:
+--   DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME  (lidas pelo conexao.py)
 -- =====================================================================
 
-CREATE DATABASE IF NOT EXISTS `almoxarifado`
-  CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
-USE `almoxarifado`;
+-- =====================================================================
+-- PARTE 1 - TABELAS (ordem importa por causa das chaves estrangeiras)
+-- =====================================================================
 
 -- 1. PRODUTOS
 CREATE TABLE IF NOT EXISTS `produtos` (
@@ -103,5 +110,32 @@ CREATE TABLE IF NOT EXISTS `pedidos_compra` (
     CHECK (`status` IN ('pendente', 'aprovado', 'rejeitado'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Conferência: deve listar as 5 tabelas
+-- Conferência: devem aparecer 5 tabelas
 SHOW TABLES;
+
+-- =====================================================================
+-- PARTE 2 - USUÁRIO DA APLICAÇÃO COM O MÍNIMO DE PERMISSÕES (OPCIONAL)
+--
+-- Não use o usuário "root" no sistema online. O sistema só lê, insere e
+-- atualiza dados (nunca apaga linhas nem altera tabelas), então basta
+-- SELECT, INSERT e UPDATE.
+--
+-- 1) TROQUE o nome do banco e a senha abaixo antes de executar.
+-- 2) 'localhost' = o sistema roda no mesmo servidor do MySQL.
+--    Se o sistema ficar em OUTRO servidor, troque 'localhost' por '%'
+--    (ou, melhor, pelo IP do servidor do sistema).
+-- =====================================================================
+
+CREATE USER IF NOT EXISTS 'almox_app'@'localhost'
+  IDENTIFIED BY 'TROQUE_ESTA_SENHA_POR_UMA_FORTE';
+
+GRANT SELECT, INSERT, UPDATE ON `almoxarifado`.* TO 'almox_app'@'localhost';
+
+FLUSH PRIVILEGES;
+
+-- Conferência das permissões do usuário
+SHOW GRANTS FOR 'almox_app'@'localhost';
+
+-- Mudanças futuras no banco (colunas novas etc.) devem ser feitas por um
+-- usuário administrador, com scripts que só ADICIONAM (ALTER TABLE ... ADD),
+-- nunca com DROP. Faça backup antes.
