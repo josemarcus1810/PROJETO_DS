@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block titulo %}Erro {{ codigo }}{% endblock %}
+{% block cabecalho_titulo %}Erro {{ codigo }}{% endblock %}
+{% block cabecalho_texto %}Não foi possível concluir a ação.{% endblock %}
+
+{% block conteudo %}
+<section>
+    <p>{{ mensagem }}</p>
+    <p><a href="{{ url_for('inicio') }}" class="botao-principal">Voltar ao início</a></p>
+</section>
+{% endblock %}

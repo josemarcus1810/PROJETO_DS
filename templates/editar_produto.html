@@ -1,109 +1,68 @@
+{% extends "base.html" %}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Produto - Almoxarifado</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% block titulo %}Editar produto{% endblock %}
+{% block cabecalho_titulo %}Editar produto{% endblock %}
+{% block cabecalho_texto %}Atualize as informações do produto cadastrado.{% endblock %}
 
-    <div class="layout">
+{% block conteudo %}
+<section>
+    <h3>Dados do produto</h3>
 
-        <aside class="sidebar">
-            <h1>Almoxarifado</h1>
+    <form action="{{ url_for('editar_produto', id=produto.id) }}" method="POST">
 
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
-                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
-                    <li><a href="{{ url_for('lotes') }}">Lotes</a></li>
-                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
-                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
-                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
-                    <li><a href="{{ url_for('login') }}">Sair</a></li>
-                </ul>
-            </nav>
-        </aside>
+        <label for="codigo">Código do produto:</label>
+        <input type="text" id="codigo" value="{{ produto.codigo }}" readonly>
 
-        <div class="conteudo">
+        <label for="tipo">Tipo do produto:</label>
+        <input type="text" id="tipo" value="{{ produto.tipo | rotulo_tipo }}" readonly>
+        <p class="ajuda">O tipo não pode ser alterado, pois o código do produto (prefixo {{ produto.codigo.split('_')[0] }}) depende dele.</p>
 
-            <header class="topo">
-                <div>
-                    <h2>Editar produto</h2>
-                    <p>Atualize as informações do produto cadastrado.</p>
-                </div>
-            </header>
+        <label for="nome">Nome do produto:</label>
+        <input
+            type="text"
+            id="nome"
+            name="nome"
+            value="{{ form.get('nome', produto.nome) }}"
+            maxlength="150"
+            required
+        >
 
-            <main>
-                <section>
-                    <h3>Dados do produto</h3>
+        <label for="data_validade">Data de validade:</label>
+        <input
+            type="date"
+            name="data_validade"
+            id="data_validade"
+            value="{{ form.get('data_validade', produto.data_validade.strftime('%Y-%m-%d') if produto.data_validade else '') }}"
+            min="{{ data_minima }}"
+            max="{{ data_maxima }}"
+            required
+            oninvalid="this.setCustomValidity('Insira uma data válida.')"
+            oninput="this.setCustomValidity('')"
+        >
 
-                    <form action="{{ url_for('editar_produto', id=produto.id) }}" method="POST">
+        <label for="quantidade">Quantidade:</label>
+        <input
+            type="number"
+            id="quantidade"
+            name="quantidade"
+            value="{{ form.get('quantidade', produto.quantidade) }}"
+            min="0"
+            max="{{ limite_quantidade }}"
+            step="1"
+            required
+        >
 
-                        <label for="codigo">Código do produto:</label>
-                        <input
-                            type="text"
-                            id="codigo"
-                            value="{{ produto.codigo }}"
-                            readonly
-                        >
+        {% set situacao_atual = form.get('situacao', produto.situacao) %}
+        <label for="situacao">Situação:</label>
+        <select id="situacao" name="situacao" required>
+            <option value="disponível" {% if situacao_atual == 'disponível' %}selected{% endif %}>Disponível</option>
+            <option value="indisponível" {% if situacao_atual == 'indisponível' %}selected{% endif %}>Indisponível</option>
+        </select>
 
-                        <label for="nome">Nome do produto:</label>
-                        <input
-                            type="text"
-                            id="nome"
-                            name="nome"
-                            value="{{ produto.nome }}"
-                            required
-                        >
-
-                        <label for="tipo">Tipo do produto:</label>
-                        <select name="tipo" id="tipo" required>
-                            <option value="papelaria" {% if produto.tipo == 'papelaria' %}selected{% endif %}>Papelaria</option>
-                            <option value="limpeza" {% if produto.tipo == 'limpeza' %}selected{% endif %}>Limpeza</option>
-                            <option value="informatica" {% if produto.tipo == 'informatica' %}selected{% endif %}>Informática</option>
-                            <option value="outros" {% if produto.tipo == 'outros' %}selected{% endif %}>Outros</option>
-                        </select>
-
-                        <label for="validade">Data de validade:</label>
-                        <input
-                            type="date"
-                            name="validade"
-                            id="validade"
-                            value="{{ produto.data_validade.strftime('%Y-%m-%d') if produto.data_validade else '' }}"
-                        >
-
-                        <label for="quantidade">Quantidade:</label>
-                        <input
-                            type="number"
-                            id="quantidade"
-                            name="quantidade"
-                            value="{{ produto.quantidade }}"
-                            min="0"
-                            required
-                        >
-
-                        <label for="situacao">Situação:</label>
-                        <select id="situacao" name="situacao" required>
-                            <option value="disponível" {% if produto.situacao == 'disponível' %}selected{% endif %}>Disponível</option>
-                            <option value="indisponível" {% if produto.situacao == 'indisponível' %}selected{% endif %}>Indisponível</option>
-                        </select>
-
-                        <button type="submit">Salvar alterações</button>
-
-                        <a href="{{ url_for('produtos') }}">Cancelar</a>
-                    </form>
-                </section>
-            </main>
-
-            <footer>
-                <p>Sistema de Almoxarifado</p>
-            </footer>
-
+        <div class="acoes-formulario">
+            <button type="submit">Salvar alterações</button>
+            <a href="{{ url_for('produtos') }}" class="botao-secundario">Cancelar</a>
         </div>
-    </div>
-
-</body>
-</html>
+    </form>
+</section>
+{% endblock %}

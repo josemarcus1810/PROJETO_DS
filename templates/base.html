@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}{% endblock %} - Almoxarifado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="layout">
+
+        <aside class="sidebar">
+            <h1>Almoxarifado</h1>
+
+            {% set menu = [
+                ('inicio', 'Início', ['inicio']),
+                ('produtos', 'Produtos', ['produtos', 'editar_produto']),
+                ('lotes', 'Lotes', ['lotes', 'novo_lote', 'editar_lote']),
+                ('pedidos', 'Pedidos de compra', ['pedidos', 'visualizar_pedido']),
+                ('movimentacoes', 'Movimentações', ['movimentacoes']),
+                ('usuario', 'Usuário', ['usuario', 'alterar_senha'])
+            ] %}
+
+            <nav>
+                <ul>
+                    {% for endpoint, texto, ativos in menu %}
+                    <li>
+                        <a href="{{ url_for(endpoint) }}"{% if request.endpoint in ativos %} class="ativo"{% endif %}>{{ texto }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+            {% if session.get('usuario') %}
+            <p class="sidebar-usuario">Conectado como <strong>{{ session['usuario'] }}</strong></p>
+            {% endif %}
+
+            <a href="{{ url_for('logout') }}" class="sair">Sair</a>
+        </aside>
+
+        <div class="conteudo">
+
+            <header class="topo">
+                <div>
+                    <h2>{% block cabecalho_titulo %}{% endblock %}</h2>
+                    <p>{% block cabecalho_texto %}{% endblock %}</p>
+                </div>
+            </header>
+
+            <main>
+                {% for categoria, mensagem in get_flashed_messages(with_categories=true) %}
+                <div class="mensagem mensagem-{{ categoria }}" role="alert">{{ mensagem }}</div>
+                {% endfor %}
+
+                {% block conteudo %}{% endblock %}
+            </main>
+
+            <footer>
+                <p>Sistema de Almoxarifado</p>
+            </footer>
+
+        </div>
+    </div>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

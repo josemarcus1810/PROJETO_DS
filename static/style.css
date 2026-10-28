@@ -568,3 +568,197 @@ footer p {
         padding: 25px 20px;
     }
 }
+
+/* =========================
+   15. MENSAGENS DE SUCESSO, ERRO E AVISO
+========================= */
+
+.mensagem {
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.mensagem-sucesso {
+    background-color: var(--cor-fundo-claro);
+    border-color: var(--cor-botao);
+    color: var(--cor-primaria);
+}
+
+.mensagem-info {
+    background-color: var(--cor-branco);
+    border-color: var(--cor-destaque);
+    color: var(--cor-texto);
+}
+
+.mensagem-erro {
+    background-color: #FDECEC;
+    border-color: #D64545;
+    color: #8A1F1F;
+}
+
+.login-card .mensagem {
+    margin-bottom: 16px;
+}
+
+/* =========================
+   16. COMPONENTES AUXILIARES
+========================= */
+
+/* Texto de ajuda abaixo dos campos */
+.ajuda {
+    font-size: 13px;
+    color: var(--cor-texto-secundario);
+}
+
+/* Botões lado a lado (salvar / cancelar) */
+.acoes-formulario {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.acoes-formulario button {
+    margin-top: 0;
+}
+
+/* Botão secundário em formato de link */
+.botao-secundario {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 1px solid var(--cor-botao);
+    border-radius: 6px;
+    background-color: var(--cor-branco);
+    color: var(--cor-botao);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.conteudo main a.botao-secundario:hover {
+    background-color: var(--cor-fundo-claro);
+    color: var(--cor-primaria);
+}
+
+/* Situação (ativo, pendente, rejeitado...) */
+.selo {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.selo-ok {
+    background-color: var(--cor-destaque);
+    color: var(--cor-primaria);
+}
+
+.selo-alerta {
+    background-color: #FFF4D6;
+    color: #7A5B00;
+}
+
+.selo-erro {
+    background-color: #FDECEC;
+    color: #8A1F1F;
+}
+
+/* Tabelas com rolagem horizontal quando a tela é estreita */
+.tabela-rolavel {
+    overflow-x: auto;
+}
+
+/* Filtros em linha */
+.filtros {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    gap: 14px;
+    align-items: end;
+}
+
+.filtros.filtros-simples {
+    grid-template-columns: 1fr auto;
+    margin-bottom: 8px;
+}
+
+.filtros .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.filtros .campo label {
+    margin-top: 0;
+}
+
+/* Lista de detalhes (pedido, usuário) */
+.detalhes {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 10px 16px;
+    margin-bottom: 4px;
+}
+
+.detalhes dt {
+    font-weight: 600;
+}
+
+.detalhes dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+/* Usuário conectado no menu lateral */
+.sidebar-usuario {
+    margin-top: auto;
+    padding: 0 14px;
+    font-size: 13px;
+    color: var(--cor-destaque);
+}
+
+.sidebar-usuario + .sair {
+    margin-top: 8px;
+}
+
+/* Links da tela de login */
+.login-link {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: var(--cor-botao);
+}
+
+code {
+    background-color: var(--cor-fundo-claro);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+@media (max-width: 650px) {
+    .filtros,
+    .filtros.filtros-simples {
+        grid-template-columns: 1fr;
+    }
+
+    .detalhes {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .detalhes dd {
+        margin-bottom: 10px;
+    }
+
+    .acoes-formulario button {
+        width: auto;
+    }
+}

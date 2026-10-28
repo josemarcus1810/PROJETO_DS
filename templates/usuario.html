@@ -1,69 +1,36 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuário - Almoxarifado</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <div class="layout">
+{% block titulo %}Usuário{% endblock %}
+{% block cabecalho_titulo %}Meu usuário{% endblock %}
+{% block cabecalho_texto %}Consulte suas informações de acesso ao sistema.{% endblock %}
 
-        <aside class="sidebar">
-            <h1>Almoxarifado</h1>
+{% block conteudo %}
+<section>
+    <h3>Informações da conta</h3>
 
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
-                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
-                    <li><a href="{{ url_for('lotes') }}">Lotes</a></li>
-                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
-                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
-                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
-                    <li><a href="{{ url_for('login') }}">Sair</a></li>
-                </ul>
-            </nav>
+    <dl class="detalhes">
+        <dt>Nome de usuário:</dt>
+        <dd>{{ conta.usuario }}</dd>
 
-            <a href="login.html" class="sair">Sair</a>
-        </aside>
+        <dt>Nome:</dt>
+        <dd>{{ conta.nome }}</dd>
 
-        <div class="conteudo">
+        <dt>Acesso anterior:</dt>
+        <dd>{{ acesso_anterior or 'Primeiro acesso' }}</dd>
 
-            <header class="topo">
-                <div>
-                    <h2>Meu usuário</h2>
-                    <p>Consulte suas informações de acesso ao sistema.</p>
-                </div>
-            </header>
+        <dt>Senha alterada em:</dt>
+        <dd>{{ conta.senha_alterada_em | datahora_br }}</dd>
 
-            <main>
+        <dt>Troca de senha em:</dt>
+        <dd>{{ dias_restantes }} dia(s)</dd>
+    </dl>
+</section>
 
-                <section>
-                    <h3>Informações da conta</h3>
+<section>
+    <h3>Segurança</h3>
 
-                    <p><strong>Nome de usuário:</strong> admin</p>
-                    <p><strong>Último acesso:</strong> Não disponível</p>
-                </section>
+    <p>Para manter sua conta segura, não compartilhe sua senha com outras pessoas. A senha deve ser trocada a cada dois meses.</p>
 
-                <section>
-                    <h3>Segurança</h3>
-
-                    <p>Para manter sua conta segura, não compartilhe sua senha com outras pessoas.</p>
-
-                    <a href="alterar_senha.html" class="botao-principal">
-                        Alterar senha
-                    </a>
-                </section>
-
-            </main>
-
-            <footer>
-                <p>Sistema de Almoxarifado</p>
-            </footer>
-
-        </div>
-    </div>
-
-</body>
-</html>
+    <a href="{{ url_for('alterar_senha') }}" class="botao-principal">Alterar senha</a>
+</section>
+{% endblock %}

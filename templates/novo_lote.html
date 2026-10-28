@@ -1,98 +1,67 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Lote - Almoxarifado</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <div class="layout">
+{% block titulo %}Novo lote{% endblock %}
+{% block cabecalho_titulo %}Cadastrar novo lote{% endblock %}
+{% block cabecalho_texto %}Selecione um produto já cadastrado e informe os dados do novo lote.{% endblock %}
 
-        <aside class="sidebar">
-            <h1>Sistema de Almoxarifado</h1>
+{% block conteudo %}
+<section>
+    <h3>Dados do lote</h3>
 
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
-                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
-                    <li><a href="{{ url_for('lotes') }}" class="ativo">Lotes</a></li>
-                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
-                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
-                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
-                </ul>
-            </nav>
+    <form action="{{ url_for('novo_lote') }}" method="POST" autocomplete="off">
 
-            <a href="{{ url_for('login') }}" class="sair">Sair</a>
-        </aside>
+        <label for="produto">Produto (digite o nome ou o código e escolha na lista):</label>
+        <input
+            type="text"
+            name="produto"
+            id="produto"
+            list="lista-produtos"
+            value="{{ form.get('produto', '') }}"
+            placeholder="Ex.: PAP_01 ou nome do produto"
+            required
+        >
+        <datalist id="lista-produtos">
+            {% for produto in produtos %}
+            <option value="{{ produto.codigo }} - {{ produto.nome }}"></option>
+            {% endfor %}
+        </datalist>
 
-        <div class="conteudo">
+        {% if not produtos %}
+        <p class="ajuda">Nenhum produto disponível. <a href="{{ url_for('produtos') }}">Cadastre um produto</a> primeiro.</p>
+        {% endif %}
 
-            <header>
-                <h1>Novo Lote</h1>
-            </header>
+        <label for="quantidade">Quantidade do lote:</label>
+        <input
+            type="number"
+            name="quantidade"
+            id="quantidade"
+            value="{{ form.get('quantidade', '') }}"
+            min="1"
+            max="{{ limite_quantidade }}"
+            step="1"
+            required
+        >
 
-            <main>
-                <div class="topo">
-                    <h2>Cadastrar novo lote</h2>
-                    <p>Selecione um produto já cadastrado e informe os dados do novo lote.</p>
-                </div>
+        <label for="data_validade">Data de validade:</label>
+        <input
+            type="date"
+            name="data_validade"
+            id="data_validade"
+            value="{{ form.get('data_validade', '') }}"
+            min="{{ data_minima }}"
+            max="{{ data_maxima }}"
+            required
+            oninvalid="this.setCustomValidity('Insira uma data válida.')"
+            oninput="this.setCustomValidity('')"
+        >
 
-                <section>
-                    <form action="{{ url_for('novo_lote') }}" method="POST">
+        <p class="ajuda">O número do lote (LOTE_01, LOTE_02...) é gerado automaticamente.</p>
 
-                        <label for="produto_id">Produto cadastrado</label>
-
-                        <select name="produto_id" id="produto_id" required>
-                            <option value="">Selecione um produto</option>
-
-                            {% for produto in produtos %}
-                            <option value="{{ produto.id }}">
-                                {{ produto.codigo }} - {{ produto.nome }}
-                            </option>
-                            {% endfor %}
-                        </select>
-
-                        {% if not produtos %}
-                            <p>Nenhum produto cadastrado.</p>
-                        {% endif %}
-
-                        <label for="quantidade">Quantidade do novo lote</label>
-
-                        <input
-                            type="number"
-                            id="quantidade"
-                            name="quantidade"
-                            min="1"
-                            required
-                        >
-
-                        <label for="validade">Data de validade</label>
-
-                        <input
-                            type="date"
-                            id="validade"
-                            name="validade"
-                        >
-
-                        <button type="submit">Cadastrar lote</button>
-
-                        <a
-                            href="{{ url_for('lotes') }}"
-                            class="botao-principal"
-                            style="width: fit-content; align-self: flex-start;"
-                        >
-                            Cancelar
-                        </a>
-
-                    </form>
-                </section>
-            </main>
-
+        <div class="acoes-formulario">
+            <button type="submit">Cadastrar lote</button>
+            <a href="{{ url_for('lotes') }}" class="botao-secundario">Cancelar</a>
         </div>
 
-    </div>
-
-</body>
-</html>
+    </form>
+</section>
+{% endblock %}

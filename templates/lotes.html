@@ -1,120 +1,49 @@
+{% extends "base.html" %}
 
-    <!DOCTYPE html>
-    <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Lotes - Almoxarifado</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    </head>
-    <body>
+{% block titulo %}Lotes{% endblock %}
+{% block cabecalho_titulo %}Lotes{% endblock %}
+{% block cabecalho_texto %}Consulte e gerencie os lotes dos produtos.{% endblock %}
 
-        <div class="layout">
+{% block conteudo %}
+<section>
+    <h3>Lotes cadastrados</h3>
 
-            <aside class="sidebar">
-                <h1>Almoxarifado</h1>
+    <p>
+        <a href="{{ url_for('novo_lote') }}" class="botao-principal">Cadastrar novo lote</a>
+    </p>
 
-                <nav>
-                    <ul>
-                        <li>
-                            <a href="{{ url_for('inicio') }}">Início</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('produtos') }}">Produtos</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('lotes') }}" class="ativo">Lotes</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('pedidos') }}">Pedidos de compra</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('movimentacoes') }}">Movimentações</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('usuario') }}">Usuário</a>
-                        </li>
-                        <li>
-                            <a href="{{ url_for('login') }}">Sair</a>
-                        </li>
-                    </ul>
-                </nav>
-            </aside>
+    <div class="tabela-rolavel">
+        <table>
+            <thead>
+                <tr>
+                    <th>Número do lote</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Data de validade</th>
+                    <th>Situação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
 
-            <div class="conteudo">
-
-                <header class="topo">
-                    <div>
-                        <h2>Lotes</h2>
-                        <p>Consulte e gerencie os lotes dos produtos.</p>
-                    </div>
-                </header>
-
-                <main>
-
-                    <section>
-                        <h3>Lotes cadastrados</h3>
-
-                        <p>
-                            <a href="{{ url_for('novo_lote') }}" class="botao-principal">
-                                Cadastrar novo lote
-                            </a>
-                        </p>
-
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Número do lote</th>
-                                    <th>Produto</th>
-                                    <th>Quantidade</th>
-                                    <th>Data de validade</th>
-                                    <th>Situação</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                {% for lote in lotes %}
-                                <tr>
-                                    <td>{{ lote.numero_lote }}</td>
-                                    <td>
-                                        {{ lote.codigo_produto }} - {{ lote.nome_produto }}
-                                    </td>
-
-                                    <td>{{ lote.quantidade }}</td>
-
-                                    <td>
-                                        {% if lote.data_validade %}
-                                            {{ lote.data_validade.strftime('%d/%m/%Y') }}
-                                        {% else %}
-                                            Não se aplica
-                                        {% endif %}
-                                    </td>
-
-                                    <td>{{ lote.situacao }}</td>
-
-                                    <td>
-                                        <a href="{{ url_for('editar_lote', id=lote.id) }}">Editar</a>
-                                    </td>
-                                </tr>
-
-                                {% else %}
-                                <tr>
-                                    <td colspan="6">Nenhum lote cadastrado.</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </section>
-
-                </main>
-
-                <footer>
-                    <p>Sistema de Almoxarifado</p>
-                </footer>
-
-            </div>
-        </div>
-
-    </body>
-    </html>
+            <tbody>
+                {% for lote in lotes %}
+                <tr>
+                    <td>{{ lote.numero_lote }}</td>
+                    <td>{{ lote.codigo_produto }} - {{ lote.nome_produto }}</td>
+                    <td>{{ lote.quantidade }}</td>
+                    <td>{{ lote.data_validade | data_br }}</td>
+                    <td><span class="selo {{ lote.situacao | classe_selo }}">{{ lote.situacao | maiuscula_inicial }}</span></td>
+                    <td>
+                        <a href="{{ url_for('editar_lote', id=lote.id) }}">Editar</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">Nenhum lote cadastrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

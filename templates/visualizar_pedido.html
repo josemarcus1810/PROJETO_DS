@@ -1,81 +1,68 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizar Pedido - Almoxarifado</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <div class="layout">
+{% block titulo %}Pedido {{ pedido.numero }}{% endblock %}
+{% block cabecalho_titulo %}Detalhes do pedido{% endblock %}
+{% block cabecalho_texto %}Consulte as informações e a situação da solicitação.{% endblock %}
 
-        <aside class="sidebar">
-            <h1>Almoxarifado</h1>
+{% block conteudo %}
+<section>
+    <h3>Informações do pedido</h3>
 
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('inicio') }}">Início</a></li>
-                    <li><a href="{{ url_for('produtos') }}">Produtos</a></li>
-                    <li><a href="{{ url_for('lotes') }}">Lotes</a></li>
-                    <li><a href="{{ url_for('pedidos') }}">Pedidos de compra</a></li>
-                    <li><a href="{{ url_for('movimentacoes') }}">Movimentações</a></li>
-                    <li><a href="{{ url_for('usuario') }}">Usuário</a></li>
-                    <li><a href="{{ url_for('login') }}">Sair</a></li>
-                </ul>
-            </nav>
+    <dl class="detalhes">
+        <dt>Número do pedido:</dt>
+        <dd>{{ pedido.numero }}</dd>
 
-            <a href="login.html" class="sair">Sair</a>
-        </aside>
+        <dt>Produto:</dt>
+        <dd>
+            {% if pedido.codigo_produto %}{{ pedido.codigo_produto }} - {% endif %}{{ pedido.nome_produto }}
+        </dd>
 
-        <div class="conteudo">
+        <dt>Produto novo?</dt>
+        <dd>{{ 'Sim' if pedido.produto_novo else 'Não' }}</dd>
 
-            <header class="topo">
-                <div>
-                    <h2>Detalhes do pedido</h2>
-                    <p>Consulte as informações e a situação da solicitação.</p>
-                </div>
-            </header>
+        <dt>Quantidade solicitada:</dt>
+        <dd>{{ pedido.quantidade }}</dd>
 
-            <main>
-                <section>
-                    <h3>Informações do pedido</h3>
+        <dt>Setor solicitante:</dt>
+        <dd>{{ pedido.setor }}</dd>
 
-                    <p><strong>Número do pedido:</strong> PED_01</p>
-                    <p><strong>Produto:</strong> Papel A4</p>
-                    <p><strong>Produto novo?</strong> Não</p>
-                    <p><strong>Quantidade solicitada:</strong> 50</p>
-                    <p><strong>Setor solicitante:</strong> RH</p>
-                    <p><strong>Link do produto:</strong> 
-                        <a href="https://example.com" target="_blank" rel="noopener noreferrer">Consultar produto</a>
-                    </p>
-                    <p><strong>Situação:</strong> Pendente</p>
+        <dt>Link do produto:</dt>
+        <dd>
+            {% if pedido.link_produto %}
+                <a href="{{ pedido.link_produto }}" target="_blank" rel="noopener noreferrer">Consultar produto</a>
+            {% else %}
+                Não informado
+            {% endif %}
+        </dd>
 
-                    <h3>Atualizar situação</h3>
+        <dt>Solicitado por:</dt>
+        <dd>{{ pedido.solicitante or '—' }} em {{ pedido.data_pedido | datahora_br }}</dd>
 
-                    <form>
-                        <label for="situacao">Situação do pedido:</label>
-                        <select id="situacao" name="situacao" required>
-                            <option value="pendente" selected>Pendente</option>
-                            <option value="aprovado">Aprovado</option>
-                            <option value="rejeitado">Rejeitado</option>
-                        </select>
+        <dt>Situação:</dt>
+        <dd><span class="selo {{ pedido.status | classe_selo }}">{{ pedido.status | maiuscula_inicial }}</span></dd>
 
-                        <button type="submit">Salvar situação</button>
-                    </form>
+        {% if pedido.data_atualizacao %}
+        <dt>Última atualização:</dt>
+        <dd>{{ pedido.data_atualizacao | datahora_br }}{% if pedido.atualizado_por %} por {{ pedido.atualizado_por }}{% endif %}</dd>
+        {% endif %}
+    </dl>
+</section>
 
-                    <p>
-                        <a href="pedidos.html">Voltar para os pedidos</a>
-                    </p>
-                </section>
-            </main>
+<section>
+    <h3>Atualizar situação</h3>
 
-            <footer>
-                <p>Sistema de Almoxarifado</p>
-            </footer>
+    <form action="{{ url_for('visualizar_pedido', id=pedido.id) }}" method="POST">
+        <label for="status">Situação do pedido:</label>
+        <select id="status" name="status" required>
+            {% for s in status_pedido %}
+            <option value="{{ s }}" {% if pedido.status == s %}selected{% endif %}>{{ s | maiuscula_inicial }}</option>
+            {% endfor %}
+        </select>
 
+        <div class="acoes-formulario">
+            <button type="submit">Salvar situação</button>
+            <a href="{{ url_for('pedidos') }}" class="botao-secundario">Voltar para os pedidos</a>
         </div>
-    </div>
-
-</body>
-</html>
+    </form>
+</section>
+{% endblock %}

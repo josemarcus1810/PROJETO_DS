@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueci minha senha - Almoxarifado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="pagina-login">
+
+    <main class="login-container">
+
+        <section class="login-card">
+            <h1>Esqueci minha senha</h1>
+            <p class="login-descricao">
+                Por segurança, a senha não é redefinida por esta tela.
+            </p>
+
+            <p>
+                Procure o administrador do sistema. Ele definirá uma senha
+                temporária para o seu usuário e, no próximo acesso, o sistema
+                pedirá que você crie uma nova senha
+                (motivo: <strong>Esqueci minha senha</strong>).
+            </p>
+
+            <p class="ajuda">
+                Administrador: execute <code>python redefinir_senha.py</code>
+                na pasta do projeto.
+            </p>
+
+            <p class="login-link">
+                <a href="{{ url_for('login') }}">Voltar para o login</a>
+            </p>
+        </section>
+
+        <footer class="login-footer">
+            <p>Sistema de Almoxarifado</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
